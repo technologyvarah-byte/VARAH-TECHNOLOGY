@@ -1,0 +1,111 @@
+{
+  "entities": {
+    "AdminRecord": {
+      "title": "AdminRecord",
+      "description": "Trusted administrator registry entry",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "email": { "type": "string", "maxLength": 200 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "createdAt"]
+    },
+    "ErpItem": {
+      "title": "ErpItem",
+      "description": "Unified CCTV Business OS record covering customers, suppliers, stock, purchases, sales, quotations, installations, service calls, site equipment, AMC, payments, expenses, staff, attendance, notifications, permissions, and cash/bank.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "ownerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "category": {
+          "type": "string",
+          "enum": [
+            "customer",
+            "supplier",
+            "stock",
+            "purchase",
+            "sale",
+            "quotation",
+            "installation",
+            "service",
+            "equipment",
+            "amc",
+            "payment",
+            "expense",
+            "staff",
+            "attendance",
+            "notification",
+            "permission",
+            "cash_bank",
+            "work_report"
+          ]
+        },
+        "code": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "subtitle": { "type": "string", "maxLength": 300 },
+        "partyName": { "type": "string", "maxLength": 200 },
+        "mobile": { "type": "string", "maxLength": 30 },
+        "location": { "type": "string", "maxLength": 500 },
+        "gstin": { "type": "string", "maxLength": 30 },
+        "status": { "type": "string", "minLength": 1, "maxLength": 50 },
+        "priority": { "type": "string", "minLength": 1, "maxLength": 30 },
+        "quantity": { "type": "number" },
+        "minQuantity": { "type": "number" },
+        "rate": { "type": "number" },
+        "amount": { "type": "number" },
+        "paidAmount": { "type": "number" },
+        "taxAmount": { "type": "number" },
+        "discountAmount": { "type": "number" },
+        "dateStr": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "endDateStr": { "type": "string", "maxLength": 40 },
+        "assignedTo": { "type": "string", "maxLength": 200 },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string", "maxLength": 200 }
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id",
+        "ownerId",
+        "category",
+        "code",
+        "title",
+        "subtitle",
+        "partyName",
+        "mobile",
+        "location",
+        "gstin",
+        "status",
+        "priority",
+        "quantity",
+        "minQuantity",
+        "rate",
+        "amount",
+        "paidAmount",
+        "taxAmount",
+        "discountAmount",
+        "dateStr",
+        "endDateStr",
+        "assignedTo",
+        "notes",
+        "tags",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/AdminRecord" },
+      "description": "Admin role lookup collection"
+    },
+    "/erp_items/{itemId}": {
+      "schema": { "$ref": "#/entities/ErpItem" },
+      "description": "Main ERP items collection scoped by ownerId"
+    }
+  }
+}

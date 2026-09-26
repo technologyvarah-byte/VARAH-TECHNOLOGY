@@ -1,0 +1,11 @@
+{
+  "name": "VARAH MANAGEMENT — CCTV Business OS",
+  "description": "Complete internal business operating system for CCTV \u0026 Security enterprises: OCR Purchase Invoices, GST Sales Billing, Serial-Tracked Stock, GPS Staff Attendance, Installation \u0026 Service Workflows, AMC/Warranty, and Financial Ledgers.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
